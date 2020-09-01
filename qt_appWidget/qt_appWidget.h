@@ -14,4 +14,11 @@ public:
 private:
     Ui::qt_appWidgetClass ui;
     appWidget* m_appWidget;
+    appWidget* m_appWidget1;
+    appWidget* m_appWidget2;
+    appWidget* m_appWidget3;
+    appWidget* m_appWidget4;
+    appWidget* m_appWidget5;
+    QGridLayout* m_qgdltLayout;
+    QVBoxLayout* m_qvbltLayout;
 };

@@ -3,12 +3,14 @@
 #include <QObject>
 #include <qlabel.h>
 #include <qboxlayout.h>
+
 class appWidget : public QWidget
 {
 	Q_OBJECT
 
 public:
 	appWidget(QWidget*parent);
+	appWidget();
 	~appWidget();
 	void setAppIcon(const QImage& image);
 	void setAppName(const QString& iconName);
