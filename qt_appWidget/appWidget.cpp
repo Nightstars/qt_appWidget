@@ -26,7 +26,7 @@ appWidget::appWidget()
 	m_qlbAppName = new QLabel();
 	m_qimgAppicon->setAlignment(Qt::AlignCenter);
 	m_qlbAppName->setAlignment(Qt::AlignCenter);
-	m_qlbAppName->setStyleSheet("size:21px;color:green;font-weight:bold;");
+	m_qlbAppName->setStyleSheet("size:21px;color:gray;font-weight:bold;");
 	m_qbxltContainer->addWidget(m_qimgAppicon);
 	m_qbxltContainer->addWidget(m_qlbAppName);
 	this->setLayout(m_qbxltContainer);
