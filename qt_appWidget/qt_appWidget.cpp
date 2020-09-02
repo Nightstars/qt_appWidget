@@ -1,4 +1,6 @@
 #include "qt_appWidget.h"
+#include <QMessageBox>
+#include <QMouseEvent>
 
 qt_appWidget::qt_appWidget(QWidget *parent)
     : QWidget(parent)
@@ -8,6 +10,7 @@ qt_appWidget::qt_appWidget(QWidget *parent)
     m_appWidget->setAppName("My App");
     QImage* img = new QImage("E:\\myimg\\word.png");
     m_appWidget->setAppIcon(*img);
+    m_appWidget->installEventFilter(this);    // 安装事件过滤器
 
     m_appWidget1 = new appWidget();
     m_appWidget1->setAppName("My App");
@@ -52,4 +55,42 @@ qt_appWidget::qt_appWidget(QWidget *parent)
     m_qvbltLayout->addLayout(m_qgdltLayout);
     m_qvbltLayout->addSpacerItem(new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Expanding));
     ui.page->setLayout(m_qvbltLayout);
+
+    connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(onBtn1Click()));
+    connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(onBtn2Click()));
+}
+
+void qt_appWidget::onBtn1Click() {
+    ui.stackedWidget->setCurrentIndex(0);
+}
+void qt_appWidget::onBtn2Click() {
+    ui.stackedWidget->setCurrentIndex(1);
+}
+bool qt_appWidget::eventFilter(QObject* obj, QEvent* event)
+{
+    if (obj == m_appWidget)//指定某个QLabel
+    {
+        if (event->type() == QEvent::MouseButtonPress) //鼠标点击
+        {
+            QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event); // 事件转换
+
+            if (mouseEvent->button() == Qt::LeftButton)
+            {
+                ui.stackedWidget->setCurrentIndex(1);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else {
+    // pass the event on to the parent class
+    return QWidget::eventFilter(obj, event);
+    }
 }

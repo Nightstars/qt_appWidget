@@ -31,6 +31,7 @@ appWidget::appWidget()
 	m_qbxltContainer->addWidget(m_qlbAppName);
 	this->setLayout(m_qbxltContainer);
 	this->setFixedSize(90, 90);
+	//this->setStyleSheet("background:red;");
 	setWindowFlags(Qt::FramelessWindowHint);//ÎÞ´°Ìå
 	setAttribute(Qt::WA_TranslucentBackground);//±³¾°Í¸Ã÷
 }

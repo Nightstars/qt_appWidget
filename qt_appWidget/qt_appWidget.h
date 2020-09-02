@@ -10,7 +10,10 @@ class qt_appWidget : public QWidget
 
 public:
     qt_appWidget(QWidget *parent = Q_NULLPTR);
-
+    bool eventFilter(QObject* obj, QEvent* event);	// 添加事件过滤器声明
+private slots:
+    void onBtn1Click();
+    void onBtn2Click();
 private:
     Ui::qt_appWidgetClass ui;
     appWidget* m_appWidget;
