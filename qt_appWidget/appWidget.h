@@ -11,6 +11,7 @@ class appWidget : public QWidget
 public:
 	appWidget(QWidget*parent);
 	appWidget();
+	appWidget(QString name, QString icon);
 	~appWidget();
 	void setAppIcon(const QImage& image);
 	void setAppName(const QString& iconName);

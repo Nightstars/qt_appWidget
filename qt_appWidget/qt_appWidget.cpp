@@ -1,6 +1,8 @@
 #include "qt_appWidget.h"
 #include <QMessageBox>
 #include <QMouseEvent>
+#include <vector>
+using namespace std;
 
 qt_appWidget::qt_appWidget(QWidget *parent)
     : QWidget(parent)
@@ -9,11 +11,11 @@ qt_appWidget::qt_appWidget(QWidget *parent)
     ui.pushButton->setText(QStringLiteral("首页"));
     ui.pushButton_2->setText(QStringLiteral("应用"));
     //ui.stackedWidget->setStyleSheet("background:green;");
-    m_appWidget = new appWidget();   
-    m_appWidget->setAppName("My App");
-    QImage* img = new QImage(":/icons/Assets/icons/books.png");
-    m_appWidget->setAppIcon(*img);
-    m_appWidget->installEventFilter(this);    // 安装事件过滤器
+    m_appWidget0 = new appWidget();   
+    m_appWidget0->setAppName("My App");
+    QImage* img0 = new QImage(":/icons/Assets/icons/books.png");
+    m_appWidget0->setAppIcon(*img0);
+    m_appWidget0->installEventFilter(this);    // 安装事件过滤器
 
     m_appWidget1 = new appWidget();
     m_appWidget1->setAppName("My App");
@@ -40,13 +42,38 @@ qt_appWidget::qt_appWidget(QWidget *parent)
     QImage* img5 = new QImage(":/icons/Assets/icons/folder.png");
     m_appWidget5->setAppIcon(*img5);
 
+    m_appWidget6 = new appWidget("My App", ":/icons/Assets/icons/folder.png");
+    m_appWidget7 = new appWidget("My App", ":/icons/Assets/icons/folder.png");
+    m_appWidget8 = new appWidget("My App", ":/icons/Assets/icons/folder.png");
+
+
+    //vector<appWidget> applist;
+    /*for (int i = 6; i < 15; i++) {
+        appWidget*  app= new appWidget();
+        applist.push_back(app);
+    }*/
+    /*for (int i = 6; i < 15; i++) {
+        appWidget *m_appWidget= new appWidget();
+        m_appWidget->setAppName("My App");
+        QImage* img = new QImage(":/icons/Assets/icons/folder.png");
+        m_appWidget->setAppIcon(*img);
+        applist.push_back(m_appWidget);
+    }*/
+
     m_qgdltLayout = new QGridLayout();
-    m_qgdltLayout->addWidget(m_appWidget, 0, 0, 1, 1);
+    m_qgdltLayout->addWidget(m_appWidget0, 0, 0, 1, 1);
     m_qgdltLayout->addWidget(m_appWidget1, 0, 1, 1, 1);
     m_qgdltLayout->addWidget(m_appWidget2, 0, 2, 1, 1);
     m_qgdltLayout->addWidget(m_appWidget3, 0, 3, 1, 1);
     m_qgdltLayout->addWidget(m_appWidget4, 0, 4, 1, 1);
     m_qgdltLayout->addWidget(m_appWidget5, 1, 0, 1, 1);
+    m_qgdltLayout->addWidget(m_appWidget6, 2, 0, 1, 1);
+    m_qgdltLayout->addWidget(m_appWidget7, 3, 0, 1, 1);
+    m_qgdltLayout->addWidget(m_appWidget8, 4, 0, 1, 1);
+
+    /*for (int i = 0; i < applist.size(); i++) {
+        m_qgdltLayout->addWidget(&applist[i], 2+i, 0, 1, 1);
+    }*/
     
     // 设置水平间距
     m_qgdltLayout->setHorizontalSpacing(10);
@@ -57,7 +84,7 @@ qt_appWidget::qt_appWidget(QWidget *parent)
     m_qvbltLayout = new QVBoxLayout();
     m_qvbltLayout->addLayout(m_qgdltLayout);
     m_qvbltLayout->addSpacerItem(new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Expanding));
-    ui.page->setLayout(m_qvbltLayout);
+    ui.scrollAreaWidgetContents->setLayout(m_qvbltLayout);
 
     connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(onBtn1Click()));
     connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(onBtn2Click()));
@@ -71,7 +98,7 @@ void qt_appWidget::onBtn2Click() {
 }
 bool qt_appWidget::eventFilter(QObject* obj, QEvent* event)
 {
-    if (obj == m_appWidget)//指定某个QLabel
+    if (obj == m_appWidget0)//指定某个QLabel
     {
         if (event->type() == QEvent::MouseButtonPress) //鼠标点击
         {

@@ -16,12 +16,15 @@ private slots:
     void onBtn2Click();
 private:
     Ui::qt_appWidgetClass ui;
-    appWidget* m_appWidget;
+    appWidget* m_appWidget0;
     appWidget* m_appWidget1;
     appWidget* m_appWidget2;
     appWidget* m_appWidget3;
     appWidget* m_appWidget4;
     appWidget* m_appWidget5;
+    appWidget* m_appWidget6;
+    appWidget* m_appWidget7;
+    appWidget* m_appWidget8;
     QGridLayout* m_qgdltLayout;
     QVBoxLayout* m_qvbltLayout;
 };
