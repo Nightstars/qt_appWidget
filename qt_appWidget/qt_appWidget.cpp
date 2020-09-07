@@ -10,7 +10,6 @@ qt_appWidget::qt_appWidget(QWidget *parent)
     ui.setupUi(this);
     ui.pushButton->setText(QStringLiteral("首页"));
     ui.pushButton_2->setText(QStringLiteral("应用"));
-    //ui.stackedWidget->setStyleSheet("background:green;");
     this->setMinimumSize(1280,780);
     m_appWidget0 = new appWidget("My App", ":/icons/Assets/icons/folder.png");
     m_appWidget0->installEventFilter(this);    // 安装事件过滤器
@@ -55,10 +54,6 @@ qt_appWidget::qt_appWidget(QWidget *parent)
     m_qgdltLayout->addWidget(m_appWidget17, 13, 0, 1, 1);
     m_qgdltLayout->addWidget(m_appWidget18, 14, 0, 1, 1);
     m_qgdltLayout->addWidget(m_appWidget19, 15, 0, 1, 1);
-
-    /*for (int i = 0; i < applist.size(); i++) {
-        m_qgdltLayout->addWidget(&applist[i], 2+i, 0, 1, 1);
-    }*/
     
     // 设置水平间距
     m_qgdltLayout->setHorizontalSpacing(10);
@@ -81,7 +76,6 @@ qt_appWidget::qt_appWidget(QWidget *parent)
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(this->m_qscarScroll);
     ui.page->setLayout(mainLayout);
-    //ui.scrollAreaWidgetContents->setLayout(m_qvbltLayout);
 
     connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(onBtn1Click()));
     connect(ui.pushButton_2, SIGNAL(clicked()), this, SLOT(onBtn2Click()));
